@@ -19,9 +19,7 @@ class LocationService < ApplicationService
      to   = "to=#{end_point}"
 
      url = [base, key, from, to].join
-  
+
      get_data(url)
    end
-
-
  end
