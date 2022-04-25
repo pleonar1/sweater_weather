@@ -13,8 +13,8 @@ class ForecastService < ApplicationService
     def get_weather(location)
       coordinates = LocationService.get_location(location)
       response = connection.get('onecall') do |faraday|
-        faraday.params['lat'] = coordinates[:lat]
-        faraday.params['lon'] = coordinates[:lng]
+        faraday.params['lat'] = coordinates[:latitude]
+        faraday.params['lon'] = coordinates[:longitude]
         faraday.params['units'] = 'imperial'
       end
       parse_json(response)
