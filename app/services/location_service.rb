@@ -11,4 +11,17 @@ class LocationService < ApplicationService
 
      [base, location, key].join
    end
+
+   def self.get_travel_time(start, end_point)
+     base = "http://www.mapquestapi.com/directions/v2/route?"
+     key = "key=#{ENV['map_quest_api']}&"
+     from = "from=#{start}&"
+     to   = "to=#{end_point}"
+
+     url = [base, key, from, to].join
+  
+     get_data(url)
+   end
+
+
  end

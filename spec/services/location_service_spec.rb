@@ -40,4 +40,10 @@ RSpec.describe LocationService, type: :service do
     expect(coordinates[:lat]).to eq 41.883229
     expect(coordinates[:lng]).to eq -87.632398
   end
+
+  it "can get travel time between two cities" do
+    response = LocationService.get_travel_time('denver', 'pueblo')
+
+    expect(response[:route][:formattedTime]).to eq("01:45:23")
+  end
 end
