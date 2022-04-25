@@ -1,16 +1,19 @@
 class ForecastService < ApplicationService
+  class << self
+    def connection
+      Faraday.new(url: 'https://api.openweathermap.org/data/2.5/') do |faraday|
+        faraday.params['appid'] = ENV['open_weather_api']
+      end
+    end
 
-  def self.get_forecast(latitude, longitude)
-    url = build_url(latitude, longitude)
-    get_data(url)
-  end
+    def parse_json(response)
+      JSON.parse(response.body, symbolize_names: true)
+    end
 
-  def self.build_url(latitude, longitude)
-    base = 'https://api.openweathermap.org/data/2.5/onecall?'
-    location = "lat=#{latitude}&lon=#{longitude}&"
-    options = 'exclude=minutely&units=imperial&'
-    key = "appid=#{ENV['open_weather_api']}"
-
-    [base, location, options, key].join
+    def get_weather(location)
+      coordinates = LocationService.get_location(location)
+      response = ('onecall') do |faraday|
+      parse_json(response)
+    end
   end
 end
