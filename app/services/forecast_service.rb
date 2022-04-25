@@ -9,10 +9,11 @@ class ForecastService < ApplicationService
     end
 
     def get_weather(location)
-      coordinates = LocationService.get_location(location)
+      data = LocationService.get_location(location)
+      coordinates = data[:results][0][:locations][0][:latLng]
       response = connection.get('onecall') do |faraday|
-        faraday.params['lat'] = coordinates[:latitude]
-        faraday.params['lon'] = coordinates[:longitude]
+        faraday.params['lat'] = coordinates[:lat]
+        faraday.params['lon'] = coordinates[:lng]
         faraday.params['units'] = 'imperial'
         faraday.params['appid'] = ENV['open_weather_api']
       end

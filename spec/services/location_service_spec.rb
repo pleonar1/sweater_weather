@@ -4,7 +4,7 @@ RSpec.describe LocationService, type: :service do
   it "builds a url" do
     base = 'http://www.mapquestapi.com/geocoding/v1/address?'
     location = "location=chicago, il&"
-    key = "appid=#{ENV['map_quest_api']}"
+    key = "key=#{ENV['map_quest_api']}"
 
     expected = [base, location, key].join
 
