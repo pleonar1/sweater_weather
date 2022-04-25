@@ -14,5 +14,6 @@ RSpec.describe Image, type: :poro do
 
     expect(@image.source_name).to eq("Dylan LaPierre")
     expect(@image.source_url).to eq("https://unsplash.com/@drench777")
+    expect(@image.source_photo).to eq('https://unsplash.com/blog/content/images/max/2560/1-VnKoValwGK3-d1bZhD6sVA.jpeg')
   end
 end
