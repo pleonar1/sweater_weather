@@ -18,5 +18,5 @@ RSpec.describe Location, type: :poro do
   it 'has coordinates' do
   expect(@location.latitude).to eq 41.883229
   expect(@location.longitude).to eq -87.632398
-end
+  end
 end
