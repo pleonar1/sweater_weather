@@ -33,7 +33,7 @@ RSpec.describe ImageService, type: :service do
 
    expected = response[:results][0]
 
-   require "pry"; binding.pry
+  
    expect(expected[:urls][:full]).to eq("https://images.unsplash.com/photo-1599697985689-7fad9fd0c94c?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjI0MzN8MHwxfHNlYXJjaHwxfHxhdGxhbnRhJTJDJTIwZ2F8ZW58MHx8fHwxNjUwODUyOTI0&ixlib=rb-1.2.1&q=85")
    expect(expected[:alt_description]).to eq("woman in gray cardigan with silver necklace")
 
