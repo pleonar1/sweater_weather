@@ -2,7 +2,7 @@ class ImageService < ApplicationService
 
   def self.get_image(location)
     url = build_url(location)
-    get_data(url)
+    ApplicationService.get_data(url)
   end
 
   def self.build_url(location)
