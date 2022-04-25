@@ -1,8 +1,8 @@
-class Api::V1::ForecastController < ApplicationController
+class ForecastsController < ApplicationController
 
-  def index
+  def show
     if params[:location].present?
-      forecast = WeatherService.coordinate_weather(params[:location])
+      forecast = ForecastService.get_weather(params[:location])
       render json: ForecastSerializer.weather(forecast)
     else
       render status: 404
