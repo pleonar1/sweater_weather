@@ -1,9 +1,7 @@
 class YelpService < ApplicationService
   class << self
     def connection
-      Faraday.new(url: 'https://api.yelp.com/v3/') do |faraday|
-        faraday.params['Authorization'] = ENV['yelp_api']
-      end
+      Faraday.new('https://api.yelp.com/v3/businesses/')
     end
 
     def parse_json(response)
@@ -11,7 +9,9 @@ class YelpService < ApplicationService
     end
 
     def get_yelp(location)
-      response = connection.get("businesses/search?#{location}")
+      response = connection.get("search?#{location}") do |faraday|
+        faraday.params['Authorization'] = ENV['yelp_api']
+      end
     end
   end
 end
