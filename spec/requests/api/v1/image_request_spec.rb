@@ -15,6 +15,4 @@ RSpec.describe 'Image Request', type: :request do
 
     result = JSON.parse(response.body, symbolize_names: true)
   end
-
-
 end
