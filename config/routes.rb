@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      # resources :forecast, only: [:show]
+      # resources :images, only: [:show]
+    end
+  end
+
+   get 'api/v1/images', to: 'images#show'
+   get 'api/v1/forcasts', to: 'forecasts#show'
 end
