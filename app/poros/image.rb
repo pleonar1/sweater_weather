@@ -1,5 +1,6 @@
 class Image
   attr_reader :url, :description, :source_name, :source_url, :source_photo
+  
   def initialize(data)
     image = data[:results][0]
     credit = image[:user]
