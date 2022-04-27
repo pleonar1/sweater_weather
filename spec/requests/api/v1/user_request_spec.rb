@@ -44,6 +44,7 @@ RSpec.describe 'Create User', type: :request do
     expect(user_json[:data]).to have_key(:attributes)
     expect(user_json[:data][:attributes]).to have_key(:email)
     expect(user_json[:data][:attributes]).to have_key(:api_key)
+    expect(user_json[:data][:attributes][:api_key]).to be_a String
   end
 
   it "returns 404 if the passwords don't match" do
