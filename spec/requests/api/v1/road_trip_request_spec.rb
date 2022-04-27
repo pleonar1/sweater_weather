@@ -66,9 +66,4 @@ RSpec.describe 'road trip request', type: :request do
     expect(road_trip_json[:data][:attributes][:travel_time]).to eq('impossible')
     expect(road_trip_json[:data][:attributes][:weather_at_eta]).to eq('null')
   end
-
-
-
-
-
 end
