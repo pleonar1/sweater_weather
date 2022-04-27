@@ -28,8 +28,10 @@ RSpec.describe 'session request', type: :request do
 
     expect(session_json[:data][:type]).to include("users")
     expect(session_json[:data]).to include(:id)
+    expect(session_json[:data][:id]).to be_a Integer
     expect(session_json[:data][:attributes][:email]).to eq("paul@gmail.com")
     expect(session_json[:data][:attributes]).to include(:api_key)
+    expect(session_json[:data][:attributes][:api_key].length).to eq(20)
   end
 
   it "if improper credentials, returns a invalid response" do
