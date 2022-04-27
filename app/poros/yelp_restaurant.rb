@@ -11,6 +11,4 @@ class YelpRestaurant
     zip_code = restaurant[:location][:zip_code]
     @address = (street_address + city_state + " " + zip_code)
   end
-
-
 end
