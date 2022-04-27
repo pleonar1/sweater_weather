@@ -41,7 +41,7 @@ RSpec.describe 'Create User', type: :request do
     post '/api/v1/users', headers: @headers, params: @user_params_1
 
     expect(response).to be_successful
-    expect(response.status).to eq(200)
+    expect(response.status).to eq(201)
 
     user_json = JSON.parse(response.body, symbolize_names: true)
 
@@ -52,7 +52,4 @@ RSpec.describe 'Create User', type: :request do
     expect(user_json[:data][:attributes]).to have_key(:email)
     expect(user_json[:data][:attributes]).to have_key(:api_key)
   end
-
-
-
 end
