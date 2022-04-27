@@ -1,4 +1,5 @@
 class LocationService < ApplicationService
+
   def self.get_location(query)
      url = build_url(query)
      get_data(url)

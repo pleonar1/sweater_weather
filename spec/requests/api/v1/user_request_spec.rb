@@ -24,13 +24,6 @@ RSpec.describe 'Create User', type: :request do
      password_confirmation: 'password'
    }.to_json
 
-   # not json
-   @user_params_4 = {
-     email: Faker::Internet.email,
-     password: 'password',
-     password_confirmation: 'password'
-   }
-
    @headers = {
      'CONTENT_TYPE' => 'application/json',
      'ACCEPT' => 'application/json'
@@ -51,5 +44,25 @@ RSpec.describe 'Create User', type: :request do
     expect(user_json[:data]).to have_key(:attributes)
     expect(user_json[:data][:attributes]).to have_key(:email)
     expect(user_json[:data][:attributes]).to have_key(:api_key)
+  end
+
+  it "returns 404 if the passwords don't match" do
+    post '/api/v1/users', headers: @headers, params: @user_params_2
+
+    expect(response.status).to eq(404)
+
+    user_json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(user_json).to eq({:data=>{:message=>"Invalid Email or Password"}})
+  end
+
+  it "returns 404 if user is blank or nil" do
+    post '/api/v1/users', headers: @headers, params: @user_params_3
+
+    expect(response.status).to eq(404)
+
+    user_json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(user_json).to eq({:data=>{:message=>"Invalid Email or Password"}})
   end
 end

@@ -5,7 +5,7 @@ RSpec.describe 'Munchies Request', type: :request do
   it "returns a sucessful response" do
     get '/api/v1/munchies?start=denver,co&destination=pueblo,co&food=chinese'
     json_data = JSON.parse(response.body, symbolize_names: true)
-    # require "pry"; binding.pry
+
     expect(json_data).to have_key(:data)
     expect(json_data[:data]).to have_key(:id)
     expect(json_data[:data]).to have_key(:type)
