@@ -6,6 +6,7 @@ class UsersController < ApplicationController
       render json: UserSerializer.user_response(user), status: 201
     else
       render status: 404
+      render "Invalid Credentials"
     end
   end
 
