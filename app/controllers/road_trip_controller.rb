@@ -11,7 +11,7 @@ class RoadTripController < ApplicationController
         render json: RoadTripSerializer.no_route(params[:road_trip][:origin], params[:road_trip][:destination]), status: 400
       end
     elsif user == nil
-      render json: {message: "API key INVALID"}
+      render json: {message: "API key INVALID"}, status: 400
     end
   end
 end

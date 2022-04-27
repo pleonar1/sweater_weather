@@ -13,6 +13,10 @@ class RoadTrip
   end
 
   def travel_time_to_integer
-    result = ((@travel_time_in_seconds / 60.0) / 60.0).round(0)
+    if @travel_time_in_seconds == nil
+      1
+    else
+      result = ((@travel_time_in_seconds / 60.0) / 60.0).round(0)
+    end
   end
 end
