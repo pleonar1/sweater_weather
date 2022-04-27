@@ -16,7 +16,10 @@ RSpec.describe 'session request', type: :request do
      'password': 'password'
                 }
 
-    # post '/api/v1/sessions', params: login_data
+    post '/api/v1/sessions', params: login_data
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
   end
 
 end
