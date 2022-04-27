@@ -43,11 +43,11 @@ RSpec.describe 'forecast request', type: :request do
       expect(hash).to include(:sunset)
       expect(hash[:sunset]).to be_a String
       expect(hash).to include(:max_temp)
-      # expect(hash[:max_temp]).to be_a Integer
+      # expect(hash[:max_temp]).to be_a Float
       expect(hash).to include(:min_temp)
       # expect(hash[:min_temp]).to be_a Float
-      # expect(hash).to include(:conditions)
-      # expect(hash[:conditions]).to be_a String
+      expect(hash).to include(:condition)
+      expect(hash[:condition]).to be_a String
       expect(hash).to include(:icon)
       expect(hash[:icon]).to be_a String
     end
@@ -60,8 +60,8 @@ RSpec.describe 'forecast request', type: :request do
       expect(hash[:time]).to be_a String
       expect(hash).to include(:temp)
       expect(hash[:temp]).to be_a Float
-      # expect(hash).to include(:conditions)
-      # expect(hash[:conditions]).to be_a String
+      expect(hash).to include(:condition)
+      expect(hash[:condition]).to be_a String
       expect(hash).to include(:icon)
       expect(hash[:icon]).to be_a String
     end
