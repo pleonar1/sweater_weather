@@ -4,7 +4,7 @@ RSpec.describe LocationService, type: :service do
   it "builds a url" do
     base = 'http://www.mapquestapi.com/geocoding/v1/address?'
     location = "location=chicago, il&"
-    key = "appid=#{ENV['map_quest_api']}"
+    key = "key=#{ENV['map_quest_api']}"
 
     expected = [base, location, key].join
 
@@ -39,5 +39,11 @@ RSpec.describe LocationService, type: :service do
 
     expect(coordinates[:lat]).to eq 41.883229
     expect(coordinates[:lng]).to eq -87.632398
+  end
+
+  it "can get travel time between two cities" do
+    response = LocationService.get_travel_time('denver', 'pueblo')
+
+    expect(response[:route][:formattedTime]).to eq("01:45:23")
   end
 end
