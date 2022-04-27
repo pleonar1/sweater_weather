@@ -25,7 +25,7 @@ class ForecastSerializer
               'sunset': Time.at(day[:sunset]).strftime('%H:%M'),
               'max_temp': day[:temp][:max],
               'min_temp': day[:temp][:min],
-              'conditions': day[:weather][0][:description],
+              'condition': day[:weather][0][:description],
               'icon': day[:weather][0][:icon]
             }
           end,
