@@ -5,7 +5,8 @@ RSpec.describe 'forecast request', type: :request do
     get '/api/v1/forcasts?location=chicago, il'
 
     expect(response).to be_successful
-    
+    #we know its working but add testing to show without a doubt
+
   end
 
 
