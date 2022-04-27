@@ -7,8 +7,8 @@ RSpec.describe 'road trip request', type: :request do
     @headers = { 'CONTENT_TYPE' => 'application/json', 'Accept' => 'application/json' }
 
     @params = {
-      start: 'moultrie, ga',
-      end_point: 'thomasville, ga',
+      origin: 'moultrie, ga',
+      destination: 'thomasville, ga',
       api_key: @user.api_key
     }.to_json
   end

@@ -27,8 +27,8 @@ class RoadTripSerializer
            "start_city": start,
            "end_city": destination,
            "travel_time": "impossible",
-           "weather_at_eta": "null"{
-           }
+           "weather_at_eta": "null"
+           
          }
        }
      }
