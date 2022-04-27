@@ -15,19 +15,19 @@ RSpec.describe 'forecast request', type: :request do
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:datetime)
     expect(forecast_json[:data][:attributes][:current_weather][:datetime]).to be_a String
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:temperature)
-    # expect(forecast_json[:data][:attributes][:current_weather][:temperature]).to be_a Float
+    expect(forecast_json[:data][:attributes][:current_weather][:temperature] * 1.0).to be_a Float
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:sunrise)
     expect(forecast_json[:data][:attributes][:current_weather][:sunrise]).to be_a String
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:sunset)
     expect(forecast_json[:data][:attributes][:current_weather][:sunset]).to be_a String
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:feels_like)
-    expect(forecast_json[:data][:attributes][:current_weather][:feels_like]).to be_a Float
+    expect(forecast_json[:data][:attributes][:current_weather][:feels_like] * 1.0).to be_a Float
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:humidity)
-    expect(forecast_json[:data][:attributes][:current_weather][:humidity]).to be_a Integer
+    expect(forecast_json[:data][:attributes][:current_weather][:humidity] * 1.0).to be_a Float
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:uvi)
-    expect(forecast_json[:data][:attributes][:current_weather][:uvi]).to be_a Integer
+    expect(forecast_json[:data][:attributes][:current_weather][:uvi] * 1.0).to be_a Float
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:visibility)
-    expect(forecast_json[:data][:attributes][:current_weather][:visibility]).to be_a Integer
+    expect(forecast_json[:data][:attributes][:current_weather][:visibility] * 1.0).to be_a Float
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:condition)
     expect(forecast_json[:data][:attributes][:current_weather][:condition]).to be_a String
     expect(forecast_json[:data][:attributes][:current_weather]).to include(:icon)
@@ -43,9 +43,9 @@ RSpec.describe 'forecast request', type: :request do
       expect(hash).to include(:sunset)
       expect(hash[:sunset]).to be_a String
       expect(hash).to include(:max_temp)
-      # expect(hash[:max_temp]).to be_a Float
+      expect(hash[:max_temp] * 1.0).to be_a Float
       expect(hash).to include(:min_temp)
-      # expect(hash[:min_temp]).to be_a Float
+      expect(hash[:min_temp] * 1.0).to be_a Float
       expect(hash).to include(:condition)
       expect(hash[:condition]).to be_a String
       expect(hash).to include(:icon)
@@ -59,7 +59,7 @@ RSpec.describe 'forecast request', type: :request do
       expect(hash).to include(:time)
       expect(hash[:time]).to be_a String
       expect(hash).to include(:temp)
-      # expect(hash[:temp]).to be_a Float
+      expect(hash[:temp] * 1.0).to be_a Float
       expect(hash).to include(:condition)
       expect(hash[:condition]).to be_a String
       expect(hash).to include(:icon)

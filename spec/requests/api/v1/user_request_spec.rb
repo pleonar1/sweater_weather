@@ -44,25 +44,37 @@ RSpec.describe 'Create User', type: :request do
     expect(user_json[:data]).to have_key(:attributes)
     expect(user_json[:data][:attributes]).to have_key(:email)
     expect(user_json[:data][:attributes]).to have_key(:api_key)
+    expect(user_json[:data][:attributes][:api_key]).to be_a String
   end
 
-  it "returns 404 if the passwords don't match" do
+  it "returns 400 if the passwords don't match" do
     post '/api/v1/users', headers: @headers, params: @user_params_2
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(400)
 
     user_json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(user_json).to eq({:data=>{:message=>"Invalid Email or Password"}})
+    expect(user_json).to eq({:message=>"Invalid Email or Password"})
   end
 
-  it "returns 404 if user is blank or nil" do
+  it "returns 400 if user is blank or nil" do
     post '/api/v1/users', headers: @headers, params: @user_params_3
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(400)
 
     user_json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(user_json).to eq({:data=>{:message=>"Invalid Email or Password"}})
+    expect(user_json).to eq({:message=>"Invalid Email or Password"})
+  end
+
+  it "returns 400 and says email already exists if it does" do
+    post '/api/v1/users', headers: @headers, params: @user_params_1
+    post '/api/v1/users', headers: @headers, params: @user_params_1
+
+    expect(response.status).to eq(400)
+
+    user_json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(user_json).to eq({:message=>"Email already exists"})
   end
 end
