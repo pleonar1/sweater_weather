@@ -3,7 +3,7 @@ class ForecastService < ApplicationService
     def connection
       Faraday.new(url: 'https://api.openweathermap.org/data/2.5/')
     end
-
+    
     def parse_json(response)
       JSON.parse(response.body, symbolize_names: true)
     end
