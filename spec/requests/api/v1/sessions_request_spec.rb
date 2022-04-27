@@ -24,6 +24,12 @@ RSpec.describe 'session request', type: :request do
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
+    session_json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(session_json[:data][:type]).to include("users")
+    expect(session_json[:data]).to include(:id)
+    expect(session_json[:data][:attributes][:email]).to eq("paul@gmail.com")
+    expect(session_json[:data][:attributes]).to include(:api_key)
   end
 
   it "if improper credentials, returns a invalid response" do
@@ -46,9 +52,11 @@ RSpec.describe 'session request', type: :request do
 
     post '/api/v1/sessions', headers: headers, params: login_data
 
-    expect(response).to be_successful
+
+    expect(response.status).to eq(404)
+
+    session_json = JSON.parse(response.body, symbolize_names: true)
+
+    expect(session_json[:data][:message]).to eq("Invalid Email or Password")
   end
-
-
-
 end
