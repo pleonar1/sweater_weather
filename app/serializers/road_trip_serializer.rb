@@ -6,12 +6,12 @@ class RoadTripSerializer
         "id": "null",
         "type": "roadtrip",
         "attributes": {
-          "start_city": road_trip.start_city,
-          "end_city": road_trip.end_city,
+          "start_city": road_trip.start_point,
+          "end_city": road_trip.end_point,
           "travel_time": road_trip.travel_time,
           "weather_at_eta": {
-            "temperature": road_trip.end_temp,
-            "conditions": road_trip.end_conditions
+            "temperature": road_trip.weather_temp,
+            "conditions": road_trip.weather_conditions
           }
         }
       }
