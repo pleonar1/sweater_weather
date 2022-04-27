@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'forecast request', type: :request do
-  it "returns a sucessful response" do
+  it "returns a sucessful response, with the correct format" do
     get '/api/v1/forcasts?location=chicago, il'
     #the ones commented out can be float or integer
     expect(response).to be_successful
@@ -65,5 +65,14 @@ RSpec.describe 'forecast request', type: :request do
       expect(hash).to include(:icon)
       expect(hash[:icon]).to be_a String
     end
+  end
+
+  it "returns a 404 and message if location is not provided in request" do
+    get '/api/v1/forcasts?location='
+
+    expect(response.status).to eq(404)
+
+    forecast_json = JSON.parse(response.body, symbolize_names: true)
+    expect(forecast_json).to eq({:data=>{:message=>"location must be provided"}})
   end
 end

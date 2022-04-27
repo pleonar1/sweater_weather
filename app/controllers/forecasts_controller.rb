@@ -5,7 +5,7 @@ class ForecastsController < ApplicationController
       forecast = ForecastService.get_weather(params[:location])
       render json: ForecastSerializer.weather(forecast)
     else
-      render status: 404
+      render json: {data: { message: 'location must be provided'}}, status: 404
     end
   end
 end
