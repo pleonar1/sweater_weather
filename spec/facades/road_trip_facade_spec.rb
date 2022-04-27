@@ -1,6 +1,9 @@
-class RoadTripFacade
+require 'rails_helper'
 
-  def self.get_travel_info(start, end_point)
-    LocationService.get_travel_time(start, end_point)
+RSpec.describe RoadTripFacade, type: :facade do
+  it "creates roadtrip objects" do
+    response = RoadTripFacade.get_travel_info("moultrie, ga", "thomasville, ga")
+    # require "pry"; binding.pry
   end
+
 end
