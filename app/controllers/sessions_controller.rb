@@ -10,6 +10,4 @@ class SessionsController < ApplicationController
       render json: { data: { message: 'Invalid Email or Password'}}, status: 404
     end
   end
-
-
 end
